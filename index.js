@@ -44,4 +44,37 @@ const bookStore = {
 }
 
 // Write your code here!
+// Wait for the page to fully load before running
+document.addEventListener('DOMContentLoaded', function() {
 
+   
+    const bookStoreTitle = document.getElementById('header');
+    bookStoreTitle.textContent = bookStore.name;
+
+
+    const bookList = document.getElementById('book-list');
+
+    bookStore.books.forEach((book) => {
+        const bookContainer = document.createElement('li');
+        const bookTitle = document.createElement('h3');
+        const bookAuthor = document.createElement('p');
+        const bookImage = document.createElement('img');
+
+        bookTitle.textContent = book.title;
+        bookAuthor.textContent = book.author;
+        bookImage.src = book.imageUrl;
+
+        bookContainer.appendChild(bookTitle);
+        bookContainer.appendChild(bookAuthor);
+        bookContainer.appendChild(bookImage);
+
+        bookList.appendChild(bookContainer);
+    });
+
+    const deleteThis = document.getElementById('delete-this');
+    if (deleteThis) {
+        deleteThis.remove();
+    }
+
+    console.log(" Successfully added " + bookStore.books.length + " books!");
+});
